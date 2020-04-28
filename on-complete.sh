@@ -31,7 +31,7 @@ export RCLONE_CONFIG=rclone.conf
 
 # RCLONE 块可以在本地磁盘上占用的总大小，默认10G。
 # RCLONE The total size that the block can occupy on the local disk, the default is 10G.
-#export RCLONE_CACHE_CHUNK_TOTAL_SIZE=10G
+export RCLONE_CACHE_CHUNK_TOTAL_SIZE=200G
 
 # RCLONE 上传失败重试次数，默认 3
 # RCLONE Upload failed retry count, the default is 3
@@ -83,11 +83,11 @@ UPLOAD_FILE() {
             echo
         )
 		echo "$(($(cat numUpload)+1))" > numUpload # Plus 1
-        rclone copy -v "${UPLOAD_PATH}" "${REMOTE_PATH}"
+        rclone copy -v "${UPLOAD_PATH}" "${REMOTE_PATH}" --user-agent "OneDrive for Android/5.29.1 (Android/9; zh-CN; meizu/16T)"
         RCLONE_EXIT_CODE=$?
 		RCLONE_EXIT_CODE_2=0
 		if [ -n "${RCLONE_DESTINATION_2}" ]; then
-			rclone copy -v "${UPLOAD_PATH}" "${REMOTE_PATH_2}"
+			rclone copy -v "${UPLOAD_PATH}" "${REMOTE_PATH_2}" --user-agent "OneDrive for Android/5.29.1 (Android/9; zh-CN; meizu/16T)"
 			RCLONE_EXIT_CODE_2=$?
 		fi
         if [ ${RCLONE_EXIT_CODE} -eq 0 ] && [ ${RCLONE_EXIT_CODE_2} -eq 0 ]; then
