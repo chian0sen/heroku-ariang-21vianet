@@ -23,11 +23,11 @@ export RCLONE_CONFIG=rclone.conf
 
 # RCLONE 并行上传文件数，仅对单个任务有效。
 # RCLONE The number of files uploaded in parallel is only valid for a single task.
-#export RCLONE_TRANSFERS=4
+export RCLONE_TRANSFERS=1
 
 # RCLONE 块的大小，默认5M，理论上是越大上传速度越快，同时占用内存也越多。如果设置得太大，可能会导致进程中断。
 # RCLONE The size of the block, the default is 5M. Theoretically, the larger the upload speed, the faster it will occupy more memory. If the setting is too large, the process may be interrupted.
-#export RCLONE_CACHE_CHUNK_SIZE=5M
+export RCLONE_CACHE_CHUNK_SIZE=1M
 
 # RCLONE 块可以在本地磁盘上占用的总大小，默认10G。
 # RCLONE The total size that the block can occupy on the local disk, the default is 10G.
@@ -83,11 +83,11 @@ UPLOAD_FILE() {
             echo
         )
 		echo "$(($(cat numUpload)+1))" > numUpload # Plus 1
-        rclone copy -v "${UPLOAD_PATH}" "${REMOTE_PATH}" --user-agent "OneDrive for Android/5.29.1 (Android/9; zh-CN; meizu/16T)"
+        rclone copy -v "${UPLOAD_PATH}" "${REMOTE_PATH}"
         RCLONE_EXIT_CODE=$?
 		RCLONE_EXIT_CODE_2=0
 		if [ -n "${RCLONE_DESTINATION_2}" ]; then
-			rclone copy -v "${UPLOAD_PATH}" "${REMOTE_PATH_2}" --user-agent "OneDrive for Android/5.29.1 (Android/9; zh-CN; meizu/16T)"
+			rclone copy -v "${UPLOAD_PATH}" "${REMOTE_PATH_2}"
 			RCLONE_EXIT_CODE_2=$?
 		fi
         if [ ${RCLONE_EXIT_CODE} -eq 0 ] && [ ${RCLONE_EXIT_CODE_2} -eq 0 ]; then
