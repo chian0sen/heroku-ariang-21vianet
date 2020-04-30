@@ -83,11 +83,11 @@ UPLOAD_FILE() {
             echo
         )
 		echo "$(($(cat numUpload)+1))" > numUpload # Plus 1
-        rclone copy -v "${UPLOAD_PATH}" "${REMOTE_PATH}" --user-agent "OneDrive for Android/5.29.1 (Android/9; zh-CN; meizu/16T)"
+        rclone copy -v "${UPLOAD_PATH}" "${REMOTE_PATH}" --user-agent "OneDrive/1.0"
         RCLONE_EXIT_CODE=$?
 		RCLONE_EXIT_CODE_2=0
 		if [ -n "${RCLONE_DESTINATION_2}" ]; then
-			rclone copy -v "${UPLOAD_PATH}" "${REMOTE_PATH_2}" --user-agent "OneDrive for Android/5.29.1 (Android/9; zh-CN; meizu/16T)"
+			rclone copy -v "${UPLOAD_PATH}" "${REMOTE_PATH_2}" --user-agent "OneDrive/1.0"
 			RCLONE_EXIT_CODE_2=$?
 		fi
         if [ ${RCLONE_EXIT_CODE} -eq 0 ] && [ ${RCLONE_EXIT_CODE_2} -eq 0 ]; then
