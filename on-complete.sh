@@ -23,11 +23,11 @@ export RCLONE_CONFIG=rclone.conf
 
 # RCLONE 并行上传文件数，仅对单个任务有效。
 # RCLONE The number of files uploaded in parallel is only valid for a single task.
-#export RCLONE_TRANSFERS=4
+export RCLONE_TRANSFERS=3
 
 # RCLONE 块的大小，默认5M，理论上是越大上传速度越快，同时占用内存也越多。如果设置得太大，可能会导致进程中断。
 # RCLONE The size of the block, the default is 5M. Theoretically, the larger the upload speed, the faster it will occupy more memory. If the setting is too large, the process may be interrupted.
-#export RCLONE_CACHE_CHUNK_SIZE=5M
+export RCLONE_CACHE_CHUNK_SIZE=20M
 
 # RCLONE 块可以在本地磁盘上占用的总大小，默认10G。
 # RCLONE The total size that the block can occupy on the local disk, the default is 10G.
