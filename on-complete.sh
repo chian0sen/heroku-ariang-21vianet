@@ -83,11 +83,11 @@ UPLOAD_FILE() {
             echo
         )
 		echo "$(($(cat numUpload)+1))" > numUpload # Plus 1
-        rclone copy -v "${UPLOAD_PATH}" "${REMOTE_PATH}" --user-agent "OneDrive/1.0"
+        rclone copy -v "${UPLOAD_PATH}" "${REMOTE_PATH}" --checkers 1 --transfers 1 --tpslimit 1 --user-agent "OneDrive/1.0"
         RCLONE_EXIT_CODE=$?
 		RCLONE_EXIT_CODE_2=0
 		if [ -n "${RCLONE_DESTINATION_2}" ]; then
-			rclone copy -v "${UPLOAD_PATH}" "${REMOTE_PATH_2}" --user-agent "OneDrive/1.0"
+			rclone copy -v "${UPLOAD_PATH}" "${REMOTE_PATH_2}" --checkers 1 --transfers 1 --tpslimit 1 --user-agent "OneDrive/1.0"
 			RCLONE_EXIT_CODE_2=$?
 		fi
         if [ ${RCLONE_EXIT_CODE} -eq 0 ] && [ ${RCLONE_EXIT_CODE_2} -eq 0 ]; then
