@@ -83,11 +83,11 @@ UPLOAD_FILE() {
             echo
         )
 		echo "$(($(cat numUpload)+1))" > numUpload # Plus 1
-        rclone copy -v "${UPLOAD_PATH}" "${REMOTE_PATH}" --cache-chunk-size 6.25M --transfers=5
+        rclone copy -v "${UPLOAD_PATH}" "${REMOTE_PATH}" --cache-chunk-size 3M --transfers=5
         RCLONE_EXIT_CODE=$?
 		RCLONE_EXIT_CODE_2=0
 		if [ -n "${RCLONE_DESTINATION_2}" ]; then
-			rclone copy -v "${UPLOAD_PATH}" "${REMOTE_PATH_2}" --cache-chunk-size 6.25M --transfers=5
+			rclone copy -v "${UPLOAD_PATH}" "${REMOTE_PATH_2}" --cache-chunk-size 3M --transfers=5
 			RCLONE_EXIT_CODE_2=$?
 		fi
         if [ ${RCLONE_EXIT_CODE} -eq 0 ] && [ ${RCLONE_EXIT_CODE_2} -eq 0 ]; then
